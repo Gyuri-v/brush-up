@@ -9,14 +9,16 @@ let painting = false;
 let filling = false;
 
 const CANVAS_SIZE = 700;
+const INITIAL_COLOR = 'black';
 
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
 
-ctx.strokeStyle = 'black';
-ctx.lineWidth = 2.5;
 ctx.fillStyle = '#fff';
 ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+ctx.strokeStyle = INITIAL_COLOR;
+ctx.fillStyle = INITIAL_COLOR;
+ctx.lineWidth = 2.5;
 
 function startPainting() {
   painting = true;
@@ -72,16 +74,32 @@ function saveFile() {
   link.click();
 }
 
-canvas.addEventListener('mousemove', onMouseMove);
-canvas.addEventListener('mousedown', startPainting);
-canvas.addEventListener('mouseup', stopPainting);
-canvas.addEventListener('mouseleave', stopPainting);
-canvas.addEventListener('click', clickCanvas);
+function handelCM() {
+  event.preventDefault();
+}
 
-range.addEventListener('change', changeStrokeSize);
-mode.addEventListener('click', changeMode);
-save.addEventListener('click', saveFile);
+if (canvas) {
+  canvas.addEventListener('mousemove', onMouseMove);
+  canvas.addEventListener('mousedown', startPainting);
+  canvas.addEventListener('mouseup', stopPainting);
+  canvas.addEventListener('mouseleave', stopPainting);
+  canvas.addEventListener('click', clickCanvas);
+  canvas.addEventListener('contextmenu', handelCM);
+}
 
-Array.from(colors).forEach(function (item) {
-  item.addEventListener('click', changeColor);
-});
+if (range) {
+  range.addEventListener('change', changeStrokeSize);
+}
+
+if (mode) {
+  mode.addEventListener('click', changeMode);
+}
+
+if (save) {
+  save.addEventListener('click', saveFile);
+}
+if (colors) {
+  Array.from(colors).forEach(function (item) {
+    item.addEventListener('click', changeColor);
+  });
+}
