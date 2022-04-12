@@ -4,9 +4,33 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  
+  <link rel="stylesheet" href="style.css">
+
+  <title>그림판 복습</title>
 </head>
 <body>
-  
+  <div class="container">
+    <canvas id="canvas" class="canvas"></canvas>
+    <div class="controls">
+      <div class="controls__range">
+        <input type="range" id="isRange" min="0.1" max="5" value="2.5" step="0.1">
+      </div>
+      <div class="controls__btns">
+        <button id="jsMode">Fill</button>
+        <button id="jsSave">Save</button>
+      </div>
+      <div class="controls__colors">
+        <div class="color controls__color" style="background-color: black"></div>
+        <div class="color controls__color" style="background-color: red"></div>
+        <div class="color controls__color" style="background-color: blue"></div>
+        <div class="color controls__color" style="background-color: yellow"></div>
+        <div class="color controls__color" style="background-color: green"></div>
+        <div class="color controls__color" style="background-color: white"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
