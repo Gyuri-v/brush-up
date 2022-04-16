@@ -13,7 +13,6 @@ function getClock() {
   const nowDate = new Date();
   const nowHours = String(nowDate.getHours()).padStart(2, '0');
   const nowMinutes = String(nowDate.getMinutes()).padStart(2, '0');
-  const nowSeconds = String(nowDate.getSeconds()).padStart(2, '0');
 
   clockElem.innerText = `${nowHours}:${nowMinutes}`;
 }
@@ -57,7 +56,7 @@ if (savedUserName === null) {
 const todoForm = document.querySelector('#todo-form');
 const todoInput = document.querySelector('#todo-form input');
 const todoList = document.querySelector('#todo-list');
-const todos = [];
+let todos = [];
 
 function saveTodos() {
   localStorage.setItem('todos', JSON.stringify(todos));
@@ -106,7 +105,7 @@ const savedToDos = localStorage.getItem('todos');
 
 if (savedToDos !== null) {
   const parsedToDos = JSON.parse(savedToDos);
-  toDos = parsedToDos;
+  todos = parsedToDos;
   parsedToDos.forEach(paintTodo);
 }
 
@@ -162,5 +161,3 @@ const quoteElemQuote = quoteElem.querySelector('span:first-child');
 const quoteElemAuthore = quoteElem.querySelector('span:last-child');
 quoteElemQuote.innerText = selectedQuote.quote;
 quoteElemAuthore.innerText = selectedQuote.author;
-
-// * weather
