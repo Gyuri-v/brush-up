@@ -6,20 +6,19 @@ import { useEffect, useState, useRef } from 'react';
 
 function Home() {
   const [todos, setTodos] = useState([]);
+  const newTodoRef = useRef(null);
+
   const getTest = async () => {
     const json = await (await fetch(`http://localhost:3001/todos`)).json();
     setTodos(json);
   };
+
   useEffect(() => {
     getTest();
   }, []);
 
-  const newTodoRef = useRef(null);
-
   function onSubmit(e) {
     e.preventDefault();
-
-    console.log(newTodoRef.current.value);
 
     fetch(`http://localhost:3001/todos`, {
       method: 'POST',
@@ -36,6 +35,19 @@ function Home() {
         document.querySelector('#write-form input').value = '';
       }
     });
+  }
+
+  function onClickDelite(event) {
+    if (window.confirm('정말로 삭제하시겠습니까?')) {
+      fetch(`http://localhost:3001/todos/${event.target.offsetParent.id}`, {
+        method: 'DELETE',
+      }).then((response) => {
+        if (response.ok) {
+          alert('삭제가 완료되었습니다.');
+          getTest();
+        }
+      });
+    }
   }
 
   return (
@@ -57,9 +69,9 @@ function Home() {
         <div className="todo-list">
           <ul>
             {todos.map((todo) => (
-              <li key={todo.id}>
+              <li key={todo.id} id={todo.id}>
                 <span>{todo.todo}</span>
-                <button>X</button>
+                <button onClick={onClickDelite}>X</button>
               </li>
             ))}
           </ul>
