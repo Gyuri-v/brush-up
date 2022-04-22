@@ -32,6 +32,8 @@ function Home() {
     }).then((response) => {
       if (response.ok) {
         alert('생성이 완료 되었습니다.');
+        getTest();
+        document.querySelector('#write-form input').value = '';
       }
     });
   }
