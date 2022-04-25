@@ -1,16 +1,29 @@
 {
   "todos": [
     {
+      "todo": "할일 1번째",
       "id": 1,
-      "todo": "할일 1번째"
+      "isDone": false
     },
     {
+      "todo": "할일 2번째",
       "id": 2,
-      "todo": "할일 2번째"
+      "isDone": false
     },
     {
-      "todo": "3번째",
-      "id": 3
+      "todo": "할 일 3번째",
+      "id": 3,
+      "isDone": false
+    },
+    {
+      "todo": "4번째",
+      "isDone": false,
+      "id": 4
+    },
+    {
+      "todo": "5번째",
+      "id": 5,
+      "isDone": false
     }
   ]
 }

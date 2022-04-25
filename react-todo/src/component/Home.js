@@ -1,11 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
-
-// ****** 잘 모르는 부분
-// 1. async, await 구문
-// 2. useRef, POST 부분 다시 복습해보기
+import Todo from './Todo';
 
 function Home() {
   const [todos, setTodos] = useState([]);
+  const [sort, setSort] = useState('');
   const newTodoRef = useRef(null);
 
   const getTest = async () => {
@@ -17,8 +15,8 @@ function Home() {
     getTest();
   }, []);
 
-  function onSubmit(e) {
-    e.preventDefault();
+  function onSubmit(event) {
+    event.preventDefault();
 
     fetch(`http://localhost:3001/todos`, {
       method: 'POST',
@@ -27,6 +25,7 @@ function Home() {
       },
       body: JSON.stringify({
         todo: newTodoRef.current.value,
+        isDoen: false,
       }),
     }).then((response) => {
       if (response.ok) {
@@ -37,17 +36,8 @@ function Home() {
     });
   }
 
-  function onClickDelite(event) {
-    if (window.confirm('정말로 삭제하시겠습니까?')) {
-      fetch(`http://localhost:3001/todos/${event.target.offsetParent.id}`, {
-        method: 'DELETE',
-      }).then((response) => {
-        if (response.ok) {
-          alert('삭제가 완료되었습니다.');
-          getTest();
-        }
-      });
-    }
+  function onChangeSort(event) {
+    setSort(event.target.value);
   }
 
   return (
@@ -66,13 +56,26 @@ function Home() {
             <button>추가</button>
           </form>
         </div>
-        <div className="todo-list">
+        <div
+          className={
+            'todo-list ' +
+            (sort == 'sortComplete'
+              ? 'isComplete'
+              : sort == 'sortIncomplete'
+              ? 'isNotComplete'
+              : '')
+          }
+        >
+          <div className="select-wrap">
+            <select onChange={onChangeSort}>
+              <option value="">전체</option>
+              <option value="sortComplete">완료만 보기</option>
+              <option value="sortIncomplete">미완료만 보기</option>
+            </select>
+          </div>
           <ul>
-            {todos.map((todo) => (
-              <li key={todo.id} id={todo.id}>
-                <span>{todo.todo}</span>
-                <button onClick={onClickDelite}>X</button>
-              </li>
+            {todos.map((todos) => (
+              <Todo todo={todos} key={todos.id} />
             ))}
           </ul>
         </div>
