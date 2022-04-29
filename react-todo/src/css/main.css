@@ -9,6 +9,13 @@
   font-size: 15px;
 }
 
+input {
+  appearance: none;
+  border-radius: 0;
+  box-shadow: none;
+  vertical-align: top;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -74,19 +81,35 @@
   display: flex;
   justify-content: space-between;
 }
-.todo-list li input[type=checkbox] {
-  margin-top: 7px;
-  margin-right: 5px;
-}
-.todo-list li input[type=text] {
+.todo-list li label {
   display: block;
   width: 100%;
+}
+.todo-list li label span {
+  display: inline-block;
+  position: relative;
+  font-size: 15px;
+}
+.todo-list li label span:after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: green;
+  transition: all 0.7s;
+}
+.todo-list li label input[type=text] {
+  width: 100%;
+  padding: 0;
   border: none;
   border-bottom: 1px solid #000;
   background: transparent;
+  font-size: 15px;
 }
-.todo-list li input[type=text]:disabled {
-  border: none;
+.todo-list li label input[type=text]:disabled {
+  border-bottom: 1px solid transparent;
 }
 .todo-list li .btn-wrap {
   display: flex;
@@ -111,9 +134,11 @@
 .todo-list li.edited .btn-modify {
   background: rgb(40, 215, 101);
 }
-.todo-list li.off input[type=text] {
+.todo-list li.off span {
   color: #999;
-  text-decoration: line-through;
+}
+.todo-list li.off span:after {
+  width: 100%;
 }
 .todo-list li + li {
   margin-top: 7px;

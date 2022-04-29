@@ -7,6 +7,13 @@
 
 *{ font-family: 'YiSunShinDotumM'; font-size: 15px; }
 
+input{
+  appearance: none;
+  border-radius: 0;
+  box-shadow: none;
+  vertical-align: top;
+}
+
 
 .container{ 
   display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; height: 100vh; padding: 50px;
@@ -58,14 +65,34 @@
   li{ 
     display: flex; justify-content: space-between; 
 
-    input[type=checkbox]{
-      margin-top: 7px; margin-right: 5px;
-    }
+    // input[type=checkbox]{
+    //   margin-top: 7px; margin-right: 5px;
+    // }
 
-    input[type=text]{
-      display: block; width: 100%; border: none; border-bottom: 1px solid #000; background: transparent;
+    label{
+      display: block; width: 100%; 
 
-      &:disabled{ border: none; } 
+      span{
+        display: inline-block;
+        position: relative;
+        font-size: 15px;
+
+        &:after{
+          content: ''; 
+          position: absolute; top: calc(50% - 1px); left: 0; width: 0; height: 2px; background: green; transition: all 0.7s;
+        }
+      }
+
+      input[type=text]{
+        width: 100%;
+        padding: 0;
+        border: none;
+        border-bottom: 1px solid #000; 
+        background: transparent;
+        font-size: 15px;
+  
+        &:disabled{ border-bottom: 1px solid transparent } 
+      }
     }
 
     .btn-wrap{
@@ -89,10 +116,10 @@
     }
 
     &.off{
-      input[type=text]{
-        color: #999; text-decoration: line-through;
+      span{
+        color: #999;
+        &:after{ width: 100%; }
       }
-      
     }
   } 
 

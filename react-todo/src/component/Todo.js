@@ -51,14 +51,13 @@ function Todo({ todo }) {
   }
 
   function onClickDelite(event) {
+    // console.log(`http://localhost:3001/todos/${todo.id}`);
     if (window.confirm('정말로 삭제하시겠습니까?')) {
       fetch(`http://localhost:3001/todos/${todo.id}`, {
         method: 'DELETE',
       }).then((response) => {
         if (response.ok) {
           alert('삭제가 완료되었습니다.');
-          event.target.offsetParent.remove();
-          document.querySelector('#write-form input[type:text]').value = '';
         }
       });
     }
@@ -69,14 +68,25 @@ function Todo({ todo }) {
       id={todo.id}
       className={(edited ? 'edited' : '') + ' ' + (isDone ? 'off' : '')}
     >
-      <input type="checkbox" checked={isDone} onChange={onClickDone} />
       <input
-        type="text"
-        value={todoText}
-        onChange={onChangeTodo}
-        disabled={edited ? false : true}
-        ref={modifyTodoRef}
+        type="checkbox"
+        checked={isDone}
+        onChange={onClickDone}
+        id={'todo' + todo.id}
       />
+      <label htmlFor={'todo' + todo.id}>
+        {edited ? (
+          <input
+            type="text"
+            value={todoText}
+            onChange={onChangeTodo}
+            disabled={edited ? false : true}
+            ref={modifyTodoRef}
+          />
+        ) : (
+          <span>{todoText}</span>
+        )}
+      </label>
       <div className="btn-wrap">
         <button type="button" className="btn-modify" onClick={onClickModify}>
           {edited ? '완료' : '수정'}
