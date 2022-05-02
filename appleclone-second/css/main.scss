@@ -1,0 +1,69 @@
+$font-color-black : #000;
+$font-color-normal : #1d1d1f;
+$font-color-gray : #888;
+
+.inner{ width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+// header
+.header{
+  position: absolute; top: 0; left: 0; z-index: 9; width: 100%; background: #fff; border-bottom: 1px solid #ddd;
+
+  &__global{ 
+    width: 100%; height: 44px;
+    
+    .inner{ height: 100%; }
+    ul{ display: flex; justify-content: space-between; align-items: center; width: 100%; height: 100%; }
+    a{ display: block; font-size: 14px; font-weight: 400; color: $font-color-normal; text-align: center; }
+  }
+
+  &__local{
+    width: 100%; height: 56px;
+
+    .inner{ display: flex; justify-content: space-between; align-items: center; height: 100%; }
+    &__logo{ font-size: 1.4rem; font-weight: 900; }
+    &__util{ display: flex;
+
+      li{margin-left: 20px; }
+      a{ display: block; font-size: 0.8rem; font-weight: 400; color: $font-color-normal; }
+    }
+  }
+}
+
+// container
+.scroll-section{
+  overflow: hidden; width: 100%; padding-top: 50vh;
+
+  .sticky-elem{
+    position: fixed; left: 0; width: 100%;
+
+    &-canvas{ 
+      top: 0; height: 100%;
+      
+      canvas{ position: absolute; top: 50%; left: 50%; }
+    }
+  }
+
+  .main-message{
+    display: flex; justify-content: center; align-items: center; top: 35vh; margin: 5px 0; height: 3em; font-size: 4vw; font-weight: 800; opacity: 0;
+  }
+
+  .description{
+    font-size: 2rem; color: $font-color-gray;
+
+    strong{ float: left; margin-right: 0.2em; font-size: 6rem; font-weight: 900; color: $font-color-normal; }
+  }
+
+  .pin { width: 1px; height: 100px; background: rgb(29, 29, 31); }
+  .desc-message{ width: 20%; opacity: 0; }
+
+  &-0{
+
+    &__title{ position: relative; top: -5vh; z-index: 5; font-size: 9vw; font-weight: 800; color: $font-color-black; text-align: center; } 
+  }
+
+  &-2{
+    .main-message{ font-size: 6vw; font-weight: 600; }
+    .b { top: 20%; left: 53%; }
+    .c { top: 15%; left: 55%; }
+  }
+}

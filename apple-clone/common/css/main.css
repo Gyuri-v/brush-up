@@ -1,0 +1,100 @@
+.inner {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+}
+.header__global {
+  width: 100%;
+  height: 44px;
+}
+.header__global .inner {
+  height: 100%;
+}
+.header__global ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.header__global a {
+  display: block;
+  font-size: 1rem;
+}
+.header__local {
+  width: 100%;
+  height: 56px;
+}
+.header__local .inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.header__local__logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #000;
+}
+.header__local__util {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+.header__local__util li {
+  margin-left: 20px;
+}
+.header__local__util a {
+  font-size: 0.8rem;
+}
+
+.container {
+  overflow: hidden;
+  width: 100%;
+}
+.container .scroll-section {
+  padding-top: 50vh;
+}
+.container .scroll-section-0__title {
+  position: relative;
+  top: -10vh;
+  font-size: 9vw;
+  font-weight: 900;
+  text-align: center;
+  line-height: 1;
+}
+.container .scroll-section .main-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 35vh;
+  margin: 5px 0;
+  height: 3em;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  opacity: 0;
+}
+@media screen and (min-width: 1600px) {
+  .container .scroll-section .main-message {
+    font-size: 4vw;
+  }
+}
+.container .sticky-elem {
+  position: fixed;
+  left: 0;
+  width: 100%;
+}
+
+/*# sourceMappingURL=main.css.map */

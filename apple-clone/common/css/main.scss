@@ -1,0 +1,84 @@
+// 반응형 선언
+$pc-max-width: 1920px;
+$pc-min-width: 1600px;
+$ta-max-width: 1024px;
+$ta-min-width: 768px;
+$mo-max-width: 360px;
+$mo-min-width: 767px;
+
+@mixin pc() {
+  @media screen and (min-width: $pc-min-width){
+    @content;
+  }
+}
+@mixin ta() {
+  @media screen and (max-width: $ta-max-width){
+    @content;
+  }
+}
+@mixin mo() {
+  @media screen and (max-width: $mo-min-width){
+    @content;
+  }
+}
+
+// common
+.inner{ width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+
+
+// header
+.header{
+  position: absolute; top: 0; left: 0; z-index: 99; width: 100%; border-bottom: 1px solid #ddd; background: #fff;
+
+
+  &__global{
+    width: 100%; height: 44px;
+    
+    .inner{ height: 100%; }
+    ul{ display: flex; justify-content: space-between; align-items: center; height: 100%;}
+    a{ display: block; font-size: 1rem; }
+  }
+
+  &__local{
+    width: 100%; height: 56px;
+
+    .inner{ display: flex; justify-content: space-between; align-items: center; height: 100%; }
+    &__logo{ font-size: 1.4rem; font-weight: 900; color: #000; }
+    &__util{ 
+      display: flex; justify-content: space-between; align-items: center; height: 100%;
+      
+      li{ margin-left: 20px; }
+      a{ font-size: 0.8rem; }
+    }
+  }
+}
+
+
+
+// container
+.container{
+  overflow: hidden; width: 100%;
+
+  // scroll-section
+  .scroll-section{
+    padding-top: 50vh;
+
+    &-0{
+      &__title{ position: relative; top: -10vh; font-size: 9vw; font-weight: 900; text-align: center; line-height: 1; }
+    }
+
+    .main-message{
+      display: flex; justify-content: center; align-items: center; top: 35vh; margin: 5px 0; height: 3em; font-size: 2.5rem; font-weight: 800; text-align: center; opacity: 0;
+
+      @include pc(){
+        font-size: 4vw;
+      }
+    }
+  }
+
+  //sticky-elem
+  .sticky-elem{
+    position: fixed; left: 0; width: 100%;
+  }
+}
